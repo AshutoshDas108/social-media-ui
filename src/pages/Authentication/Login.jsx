@@ -32,7 +32,7 @@ const Login = () => {
             <Field
               as={TextField}
               name="emial"
-              palceholder="Email"
+              placeholder="Email"
               type="email"
               variants="outlined"
               fullWidth
@@ -47,7 +47,7 @@ const Login = () => {
              <Field
               as={TextField}
               name="password"
-              palceholder="Password"
+              placeholder="Password"
               type="password"
               variants="outlined"
               fullWidth

@@ -45,9 +45,10 @@ const Register = () => {
                 name="firstName"
                 type="text"
                 variant="outlined"
-                palceholder="First Name"
+                placeholder="First Name"
                 fullWidth
               />
+
               <ErrorMessage
                 name="firstName"
                 component={"div"}
@@ -59,7 +60,7 @@ const Register = () => {
               <Field
                 as={TextField}
                 name="lastName"
-                palceholder="Last Name"
+                placeholder="Last Name"
                 type="text"
                 variants="outlined"
                 fullWidth
@@ -75,7 +76,7 @@ const Register = () => {
               <Field
                 as={TextField}
                 name="emial"
-                palceholder="Email"
+                placeholder="Email"
                 type="email"
                 variants="outlined"
                 fullWidth
@@ -90,7 +91,7 @@ const Register = () => {
               <Field
                 as={TextField}
                 name="password"
-                palceholder="Password"
+                placeholder="Password"
                 type="password"
                 variants="outlined"
                 fullWidth
