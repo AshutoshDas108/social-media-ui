@@ -4,7 +4,7 @@ import Authentication from './pages/Authentication/Authentication';
 
 function App() {
   return (
-    <div >
+    <div>
       <Authentication/>
     </div>
   );
