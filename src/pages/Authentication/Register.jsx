@@ -24,10 +24,15 @@ const validationSchema = {
 };
 
 const Register = () => {
-  const [formValue, setFormValue] = useState();
+  const [gender, setGender] = useState("");
 
   const handleSubmit = (values) => {
+    values.gender= gender;
     console.log("Submit", values);
+  };
+
+  const handleChange = (event) => {
+    setGender(event.target.value);
   };
 
   return (
@@ -102,7 +107,7 @@ const Register = () => {
                 className="text-red-500"
               />
             </div>
-            <RadioGroup row aria-label="gender" name="gender">
+            <RadioGroup onChange={handleChange} row aria-label="gender" name="gender">
               <FormControlLabel
                 value="female"
                 control={<Radio />}
