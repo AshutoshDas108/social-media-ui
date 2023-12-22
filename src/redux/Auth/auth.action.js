@@ -1,7 +1,7 @@
 import { API_BASE_URL } from "../../config/api"
 import { LOGIN_FAILURE, LOGIN_SUCCESS } from "./auth.actionType"
 
-const loginUserAction = (loginData) => async (dispatc) => {
+const loginUserAction = (loginData) => async (dispatch) => {
     try {
         const {data} = await axios.post(`${API_BASE_URL}/auth/login`, loginData)
 
