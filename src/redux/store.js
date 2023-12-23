@@ -4,6 +4,7 @@ import { authReducer } from "./Auth/auth.reducer";
 
 const rootReducers = combineReducers({
 
+    //key: reducerName
     auth: authReducer
 
 })
