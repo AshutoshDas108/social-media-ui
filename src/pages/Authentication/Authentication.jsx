@@ -2,6 +2,7 @@ import React from "react";
 import { Card, Grid } from "@mui/material";
 import Login from "./Login";
 import Register from "./Register";
+import { Route, Routes } from "react-router-dom";
 
 const Authentication = () => {
   return (
@@ -26,8 +27,14 @@ const Authentication = () => {
                 </p>
               </div>
 
+              <Routes>
+                <Route path="/" element={<Login/>} />
+                <Route path="/login" element={<Login/>} />
+                <Route path="/register" element={<Register/>} />
+              </Routes>
+
               {/* <Login /> */}
-              <Register/>
+              {/* <Register/> */}
             </Card>
           </div>
         </Grid>
