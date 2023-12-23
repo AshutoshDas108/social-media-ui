@@ -45,7 +45,7 @@ const Register = () => {
     <>
       <Formik
         onSubmit={handleSubmit}
-        // validationSchema={validationSchema}
+        //validationSchema={validationSchema}
         initialValues={initialValues}
       >
         <Form className="space-y-5">
@@ -86,7 +86,7 @@ const Register = () => {
             <div>
               <Field
                 as={TextField}
-                name="emial"
+                name="email"
                 placeholder="Email"
                 type="email"
                 variants="outlined"
