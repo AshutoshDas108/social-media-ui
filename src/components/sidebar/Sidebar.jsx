@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { navigationMenu } from './sideBarNavigation'
 import { Avatar, Button, Card, Divider, Menu, MenuItem } from '@mui/material'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
+import InstagramIcon from '@mui/icons-material/Instagram';
 
 const Sidebar = () => {
 
@@ -22,7 +24,7 @@ const Sidebar = () => {
 
         <div className=''>
 
-          <span className='logo font-bold text-2xl'>Our Socials</span>
+          <span className='logo text-3xl font-bold'>Connect <InstagramIcon size='large'/> </span>
 
         </div>
 

@@ -42,7 +42,7 @@ const HomePage = () => {
 
             </Grid>
 
-            <Grid item lg={3} className='relative'>
+           { location.pathname==="/" && <Grid item lg={3} className='relative'>
 
                 <div className='sticky top-0 w-full'>
 
@@ -50,7 +50,7 @@ const HomePage = () => {
 
                 </div>
 
-            </Grid>
+            </Grid> }
 
         </Grid>
       
