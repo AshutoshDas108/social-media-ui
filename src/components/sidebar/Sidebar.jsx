@@ -5,10 +5,13 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
 
   const {auth} = useSelector(store=>store)
+
+  const navigate = useNavigate();
 
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl);
@@ -18,6 +21,17 @@ const Sidebar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleNavigate = (item) => {
+     if(item.title === 'Profile') 
+      {
+        navigate(`/profile/{auth.user?.id}`);
+      }
+      else{
+         navigate(item.path)    
+      } 
+    }
+
 
 
   return (
@@ -33,7 +47,7 @@ const Sidebar = () => {
 
         <div className='space-y-7'>
 
-          {navigationMenu.map((item)=><div className='flex space-x-1 items-center cursor-pointer'>
+          {navigationMenu.map((item)=><div onClick={()=>handleNavigate(item)} className='flex space-x-1 items-center cursor-pointer'>
             {item.icon}
             <p className='text-xl'>{item.title}</p>
           </div>)}

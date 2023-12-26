@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import PostCard from "../components/post/PostCard";
 import UserReelsCard from "../components/Reels/UserReelsCard";
+import { useSelector } from "react-redux";
+import ProfileModal from "./ProfileModel";
 
 const tabs = [
   { value: "posts", name: "Posts" },
@@ -18,13 +20,17 @@ const reposts = [1, 1, 1, 1, 1, 1, 1];
 const Profile = () => {
   const { id } = useParams();
   const [value, setValue] = useState("posts");
+  const {auth} = useSelector(state=>state)
+  const [open, setOpen] = React.useState(false);
+  const handleOpenProfileModel = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   return (
-    <div className="py-10 w-[70%]">
+    <Card className="py-10 w-[70%]">
       <div className="rounded-md">
         <div className="h-[12rem]">
           <img
@@ -45,6 +51,7 @@ const Profile = () => {
             <Button
               sx={{ borderRadius: "20px", width: "10rem", height: "3rem" }}
               variant="outlined"
+              onClick={handleOpenProfileModel}
             >
               Edit Profile
             </Button>
@@ -54,8 +61,8 @@ const Profile = () => {
         </div>
         <div className="p-4 ">
           <div>
-            <h1 className="py-1 font-bold text-xl">Ashutosh Das</h1>
-            <p>@ashutosh_108</p>
+            <h1 className="py-1 font-bold text-xl">{auth.user?.firstName +" "+ auth.user?.lastName}</h1>
+            <p>@{auth.user?.firstName.toLowerCase() +"_"+ auth.user?.lastName.toLowerCase()}</p>
           </div>
 
           <div className="flex gap-6 items-center py-3">
@@ -84,7 +91,7 @@ const Profile = () => {
 
           <div className="flex justify-center">
             {value === "posts" ? (
-              <Card className="space-y-5 my-10 w-[80%]">
+              <Card className="space-y-2 my-10 w-[80%]">
                 {posts.map((item) => {
                   return (
                     <span className="border border-slate-100 rounded-md">
@@ -123,7 +130,11 @@ const Profile = () => {
           </div>
         </section>
       </div>
-    </div>
+
+      <section>
+        <ProfileModal open={open} handleClose={handleClose} />
+      </section>
+    </Card>
   );
 };
 

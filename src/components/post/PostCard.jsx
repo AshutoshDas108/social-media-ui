@@ -8,8 +8,12 @@ import ShareIcon from '@mui/icons-material/Share';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
+import { useSelector } from 'react-redux';
 
 const PostCard = () => {
+
+  const {auth} = useSelector(store=>store)
+
   return (
     <Card className=''>
 
@@ -24,8 +28,8 @@ const PostCard = () => {
             <MoreVertIcon />
           </IconButton>
         }
-        title="Ashutosh Das"
-        subheader="@ashutosh_108"
+        title={auth.user?.firstName +" "+ auth.user?.lastName}
+        subheader={"@"+auth.user?.firstName.toLowerCase() +" "+ auth.user?.lastName.toLowerCase()}
       />
 
 <CardMedia

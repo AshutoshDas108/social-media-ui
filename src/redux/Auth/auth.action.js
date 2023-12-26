@@ -18,7 +18,7 @@ export const loginUserAction = (loginData) => async (dispatch) => {
 
         console.log("login successful", data);
 
-        dispatch({type:LOGIN_SUCCESS, payload: data.jwt})
+        dispatch({type:LOGIN_SUCCESS, payload: data.token})
 
     } 
     
@@ -39,7 +39,7 @@ export const registerUserAction = (registerData) => async (dispatch) => {
         const {data} = await axios.post(`${API_BASE_URL}/auth/signup`, registerData.data)
 
         if(data.token) {
-            localStorage.setItem('jwt', data.jwt)
+            localStorage.setItem('jwt', data.token)
         }
 
         console.log("register success" , data)
@@ -85,21 +85,21 @@ export const getProfileAction = (jwt) => async (dispatch) => {
     }
 }
 
-export const updateUserAction = (reqData) => async (dispatch) => {
+export const updateProfileAction = (reqData) => async (dispatch) => {
 
     dispatch({type:UPDATE_PROFILE_REQUEST});
     
     try 
     {
-        const {data} = await api.post(`${API_BASE_URL}/api/users/`, reqData.data)
+        const {data} = await api.put(`${API_BASE_URL}/api/users`, reqData)
 
-        if(data.jwt) {
-            localStorage.setItem('jwt', data.jwt)
+        if(data.token) {
+            localStorage.setItem('jwt', data.token)
         }
 
         console.log("update success" , data)
 
-        dispatch({type:UPDATE_PROFILE_SUCCESS, payload: data.jwt})
+        dispatch({type:UPDATE_PROFILE_SUCCESS, payload: data.token})
 
     } 
     
