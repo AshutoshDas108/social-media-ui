@@ -18,9 +18,9 @@ const HomeRight = () => {
           <p className="mr-4 font-sm text-xs opacity-95">View All</p>
         </div>
         <div className="space-y-5">
-          {users.map((user) => {
-            return <PopularUsercard />;
-          })}
+          {users.map((user) => 
+            <PopularUsercard/>
+        )}
         </div>
       </Card>
     </div>

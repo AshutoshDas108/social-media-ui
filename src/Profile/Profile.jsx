@@ -11,10 +11,10 @@ const tabs = [
   { value: "repost", name: "Reposts" },
 ];
 //dummy posts
-const posts = [1, 1, 1, 1,1,1,1,1];
-const reels = [1, 1, 1, 1,1,1,1,1,1,1];
-const saved = [1, 1, 1, 1,1,1,1,1];
-const reposts = [1, 1,1,1,1,1,1];
+const posts = [1, 1, 1, 1, 1, 1, 1, 1];
+const reels = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+const saved = [1, 1, 1, 1, 1, 1, 1, 1];
+const reposts = [1, 1, 1, 1, 1, 1, 1];
 const Profile = () => {
   const { id } = useParams();
   const [value, setValue] = useState("posts");
@@ -95,8 +95,9 @@ const Profile = () => {
               </Card>
             ) : value === "reels" ? (
               <div className="flex justify-center flex-wrap gap-4 space-y-3">
-                {reels.map((item) =><UserReelsCard/>                      
-                )}
+                {reels.map((item) => (
+                  <UserReelsCard />
+                ))}
               </div>
             ) : value === "saved" ? (
               <Card className="space-y-5 my-10 w-[80%]">
@@ -119,8 +120,6 @@ const Profile = () => {
                 })}
               </Card>
             ) : null}
-
-     
           </div>
         </section>
       </div>

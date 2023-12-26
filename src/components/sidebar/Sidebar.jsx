@@ -4,8 +4,11 @@ import { Avatar, Button, Card, Divider, Menu, MenuItem } from '@mui/material'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import { useSelector } from 'react-redux';
 
 const Sidebar = () => {
+
+  const {auth} = useSelector(store=>store)
 
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl);
@@ -49,8 +52,8 @@ const Sidebar = () => {
 
             <div>
 
-              <p className='font-bold'>Ashutosh Das</p>
-              <p className='opacity-70'>@ashutosh_108</p>
+              <p className='font-bold'>{auth.user?.firstName +" "+ auth.user?.lastName}</p>
+              <p className='opacity-70'>@{auth.user?.firstName.toLowerCase() +"_"+ auth.user?.lastName.toLowerCase()}</p>
 
             </div>
 

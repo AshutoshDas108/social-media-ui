@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Sidebar from '../../components/sidebar/Sidebar'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import MiddlePart from '../../components/MiddlePart/MiddlePart'
@@ -7,10 +7,25 @@ import Reels from '../../components/Reels/Reels'
 import CreateReelsForm from '../../components/Reels/CreateReelsForm'
 import Profile from '../../Profile/Profile'
 import HomeRight from '../../components/HomeRight/HomeRight'
+import { useDispatch, useSelector } from 'react-redux'
+import { getProfileAction } from '../../redux/Auth/auth.action'
 
 const HomePage = () => {
 
+    const dispatch = useDispatch();
+
     const location = useLocation();
+
+    const jwt = localStorage.getItem('jwt');
+
+    const {auth} = useSelector(store => store)
+
+    //console.log("auth", auth)
+
+    useEffect(()=>{
+        dispatch(getProfileAction(jwt))
+      }, 
+      [])
 
 
   return (
