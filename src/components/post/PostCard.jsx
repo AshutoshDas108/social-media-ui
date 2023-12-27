@@ -29,7 +29,7 @@ const PostCard = () => {
           </IconButton>
         }
         title={auth.user?.firstName +" "+ auth.user?.lastName}
-        subheader={"@"+auth.user?.firstName.toLowerCase() +" "+ auth.user?.lastName.toLowerCase()}
+        subheader={"@"+auth.user?.firstName.toLowerCase() +"_"+ auth.user?.lastName.toLowerCase()}
       />
 
 <CardMedia
