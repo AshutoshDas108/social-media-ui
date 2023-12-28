@@ -1,5 +1,5 @@
 import { Avatar, Grid, IconButton } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import WestIcon from "@mui/icons-material/West";
 import AddIcCallIcon from "@mui/icons-material/AddIcCall";
 import VideoCallIcon from "@mui/icons-material/VideoCall";
@@ -8,8 +8,21 @@ import SearchUser from "../../components/searchuserChat_Message/SearchUser";
 import  './Message.css'
 import UserChatCard from "./UserChatCard";
 import ChatMessage from "./ChatMessage";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllChatsAction } from "../../redux/Message/message.action";
 
 const Message = () => {
+
+    const dispatch = useDispatch();
+
+    const { message, auth} = useSelector(store => store);
+
+    useEffect(() => {
+     dispatch(getAllChatsAction())
+    }, []);
+
+    console.log("chats", message.chats);
+
   const handleSelectImage = () => {
     console.log("selectImage");
   };
@@ -28,7 +41,10 @@ const Message = () => {
                 <div className=""><SearchUser/></div>
 
                 <div className="h-full space-y-4 mt-5 overflow-y-scroll hideScrollbar">
-                 <UserChatCard/>
+                    {
+                        message.chats.map((item)=><UserChatCard chat={item}/>)
+                    }
+                 
                 </div>
               </div>
             </div>
