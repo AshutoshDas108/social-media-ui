@@ -54,9 +54,10 @@ const Message = () => {
 
   const handleSelectImage = async (e) => {
     console.log("selectImage");
+    setLoading(true); // start loading
     const imageUrl = await uploadToCloudniry(e.target.files[0], "image");
     setSelectedImage(imageUrl);
-    setLoading(false);
+    setLoading(false); // stop loading
   };
 
   const handleCreateMessage = (values) => {
@@ -69,7 +70,7 @@ const Message = () => {
     setInputValue("");
   };
 
-  const handleLoading = ()=> setLoading(true);
+  //const handleLoading = ()=> setLoading(true);
 
   useEffect(() => {
     setMessages([...messages, message.message]);
@@ -160,7 +161,7 @@ const Message = () => {
           {/* input part where we writw message
                 should not scroll with the message so -- stickey */}
           <div className="sticky bottom-0 border-l">
-          {selectedImage && <img onClick={handleLoading}
+          {selectedImage && <img
           className="w-[5rem] h-[5rem] object-cover px-2"
               src={selectedImage} alt=" "/>}
             <div className="py-5 flex items-center justify-center space-x-5">
