@@ -1,5 +1,5 @@
 import { Avatar, Card, IconButton, Input } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import StoryCircle from "./StoryCircle";
 import ImageIcon from "@mui/icons-material/Image";
@@ -7,12 +7,23 @@ import VideocamIcon from "@mui/icons-material/Videocam";
 import ArticleIcon from "@mui/icons-material/Article";
 import PostCard from "../post/PostCard";
 import CreatePostModel from "../CreatePost/CreatePostModel";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllPostAction } from "../../redux/Post/post.action";
+import { GET_ALL_POST_SUCCESS } from "../../redux/Post/post.actionType";
+//import { GET_ALL_POST_SUCCESS } from "../../redux/Post/post.actionType";
 
 const story = [1, 1, 1, 1, 1];
-const dummyPosts = [1, 1, 1, 1, 1];
+//const dummyPosts = [1, 1, 1, 1, 1];
 
 
 const MiddlePart = () => {
+
+  //dispatch action here
+const dispatch = useDispatch();
+
+const {post} = useSelector(store=>store)
+
+console.log("post store", post)
 
   const [openCreatePostModel , setOpenCreatePostModel] = useState(false);
 
@@ -26,6 +37,23 @@ const MiddlePart = () => {
     console.log("Post model opened");
     setOpenCreatePostModel(true);
   };
+
+  //const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    dispatch(getAllPostAction());
+    //setIsLoading(false); 
+  }, []);
+
+  // useEffect(()=>{
+  //   const postsFromLocalStorage = localStorage.getItem("posts");
+  //   if (postsFromLocalStorage) {
+  //     dispatch({ type: GET_ALL_POST_SUCCESS, payload: JSON.parse(postsFromLocalStorage) });
+  //     //setIsLoading(false);
+  //   } 
+  //     dispatch(getAllPostAction());
+  //   },
+  //  [])
 
   return (
     <div className="px-20">
@@ -83,11 +111,22 @@ const MiddlePart = () => {
       </Card>
       <div className="mt-5 space-y-5">
 
-        {dummyPosts.map((post) => {
-          return(
-            <PostCard/>
-          )
-        })}
+
+        {console.log(post.posts.length)}
+        {/* {console.log(post.post.length)} */}
+
+        {post.posts.map((item)=><PostCard item={item}/>)}
+
+
+        {/* {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          post.posts.map((item) => {
+            return(
+              <PostCard item={item}/>
+            )
+          })
+        )} */}
 
       </div>
       <div>

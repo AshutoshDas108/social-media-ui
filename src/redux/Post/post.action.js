@@ -38,6 +38,21 @@ export const getAllPostAction = () => async (dispatch) => {
   }
 };
 
+
+// export const getAllPostAction = () => async (dispatch) => {
+//   dispatch({ type: GET_ALL_POST_REQUEST });
+//   try {
+//     const { data } = await api.get("api/posts");
+//     localStorage.setItem("posts", JSON.stringify(data)); // Store posts in Local Storage
+//     dispatch({ type: GET_ALL_POST_SUCCESS, payload: data });
+//     console.log("Get all posts", data);
+//   } catch (error) {
+//     console.log("error", error);
+//     dispatch({ type: GET_ALL_POST_FAILURE, payload: error });
+//   }
+// };
+
+
 export const getUsersPostAction = (userId) => async (dispatch) => {
   dispatch({ type: GET_USERS_POST_REQUEST });
   try {

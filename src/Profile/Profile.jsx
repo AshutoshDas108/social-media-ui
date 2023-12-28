@@ -13,14 +13,16 @@ const tabs = [
   { value: "repost", name: "Reposts" },
 ];
 //dummy posts
-const posts = [1, 1, 1, 1, 1, 1, 1, 1];
+//const posts = [1, 1, 1, 1, 1, 1, 1, 1];
 const reels = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 const saved = [1, 1, 1, 1, 1, 1, 1, 1];
 const reposts = [1, 1, 1, 1, 1, 1, 1];
+
 const Profile = () => {
   const { id } = useParams();
   const [value, setValue] = useState("posts");
-  const {auth} = useSelector(state=>state)
+  const { auth } = useSelector(store => store);
+  const { post } = useSelector(store => store);
   const [open, setOpen] = React.useState(false);
   const handleOpenProfileModel = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -61,8 +63,15 @@ const Profile = () => {
         </div>
         <div className="p-4 ">
           <div>
-            <h1 className="py-1 font-bold text-xl">{auth.user?.firstName +" "+ auth.user?.lastName}</h1>
-            <p>@{auth.user?.firstName.toLowerCase() +"_"+ auth.user?.lastName.toLowerCase()}</p>
+            <h1 className="py-1 font-bold text-xl">
+              {auth.user?.firstName + " " + auth.user?.lastName}
+            </h1>
+            <p>
+              @
+              {auth.user?.firstName.toLowerCase() +
+                "_" +
+                auth.user?.lastName.toLowerCase()}
+            </p>
           </div>
 
           <div className="flex gap-6 items-center py-3">
@@ -88,14 +97,14 @@ const Profile = () => {
               })}
             </Tabs>
           </Box>
-
+        {
           <div className="flex justify-center">
             {value === "posts" ? (
               <Card className="space-y-2 my-10 w-[80%]">
-                {posts.map((item) => {
+                {post.posts.map((item) => {
                   return (
                     <span className="border border-slate-100 rounded-md">
-                      <PostCard />
+                      <PostCard item={item} />
                     </span>
                   );
                 })}
@@ -128,6 +137,7 @@ const Profile = () => {
               </Card>
             ) : null}
           </div>
+        }
         </section>
       </div>
 

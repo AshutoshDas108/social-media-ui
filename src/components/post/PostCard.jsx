@@ -8,11 +8,9 @@ import ShareIcon from '@mui/icons-material/Share';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
-import { useSelector } from 'react-redux';
 
-const PostCard = () => {
 
-  const {auth} = useSelector(store=>store)
+const PostCard = ({item}) => {
 
   return (
     <Card className=''>
@@ -28,23 +26,21 @@ const PostCard = () => {
             <MoreVertIcon />
           </IconButton>
         }
-        title={auth.user?.firstName +" "+ auth.user?.lastName}
-        subheader={"@"+auth.user?.firstName.toLowerCase() +"_"+ auth.user?.lastName.toLowerCase()}
+        title={item.user.firstName +" "+ item.user.lastName}
+        subheader={"@"+item.user.firstName.toLowerCase() +"_"+ item.user.lastName.toLowerCase()}
       />
 
 <CardMedia
         component="img"
         height="194"
-        image="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=600"
+        image={item.image}
         alt="Paella dish"
       />
       
 
       <CardContent>
         <Typography variant="body2" color="text.secondary">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the mussels,
-          if you like.
+         {item.caption}
         </Typography>
       </CardContent>
 

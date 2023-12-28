@@ -13,7 +13,7 @@ import React, { useState } from "react";
 import ImageIcon from "@mui/icons-material/Image";
 import VideoCallIcon from "@mui/icons-material/VideoCall";
 import { uploadToCloudniry } from "../../Utils/uploadToCloudniry";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createPostAction } from "../../redux/Post/post.action";
 
 const style = {
@@ -54,6 +54,8 @@ const CreatePostModel = ({ handleClose, open }) => {
     formik.setFieldValue("video", videoUrl);
   };
 
+  const {auth} = useSelector(store => store)
+
   const formik = useFormik({
     initialValues: {
       caption: "",
@@ -80,8 +82,8 @@ const CreatePostModel = ({ handleClose, open }) => {
               <div className="flex space-x-4 items-center">
                 <Avatar />
                 <div>
-                  <p className="font-bold text-lg">Ashutosh Das</p>
-                  <p className="text-sm">@ashutosh_das</p>
+                  <p className="font-bold text-lg">{auth.user?.firstName +" "+ auth.user?.lastName}</p>
+                  <p className="text-sm">@{auth.user?.firstName.toLowerCase() +"_"+ auth.user?.lastName.toLowerCase()}</p>
                 </div>
               </div>
               <textarea
