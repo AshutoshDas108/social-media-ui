@@ -12,7 +12,7 @@ const ChatMessage = () => {
         } text-white bg-[#191c29]`}
       >
         {true && <img className="w-[12rem] h-[17rem] object-cover rounded-md"
-        src='https://cdn.pixabay.com/photo/2023/12/06/08/56/winter-8433264_1280.jpg'/>}
+        src='https://cdn.pixabay.com/photo/2023/12/06/08/56/winter-8433264_1280.jpg' alt=""/>}
         <p className={`${true ? "py-2" : "py-1"}`}>message....</p>
 
       </div>
