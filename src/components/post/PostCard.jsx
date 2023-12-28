@@ -55,8 +55,8 @@ const PostCard = ({item}) => {
             <MoreVertIcon />
           </IconButton>
         }
-        title={item.user.firstName +" "+ item.user.lastName}
-        subheader={"@"+item.user.firstName.toLowerCase() +"_"+ item.user.lastName.toLowerCase()}
+        title={item?.user?.firstName +" "+ item?.user?.lastName}
+        subheader={"@"+item?.user?.firstName.toLowerCase() +"_"+ item?.user?.lastName.toLowerCase()}
       />
 
 <CardMedia

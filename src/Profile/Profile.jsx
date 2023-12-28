@@ -31,6 +31,8 @@ const Profile = () => {
     setValue(newValue);
   };
 
+  
+
   return (
     <Card className="py-10 w-[70%]">
       <div className="rounded-md">
