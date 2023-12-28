@@ -68,6 +68,9 @@ const CreatePostModel = ({ handleClose, open }) => {
     },
   });
 
+
+  
+
   return (
     <div>
       <Modal

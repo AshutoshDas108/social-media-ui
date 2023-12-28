@@ -42,8 +42,7 @@ console.log("post store", post)
 
   useEffect(() => {
     dispatch(getAllPostAction());
-    //setIsLoading(false); 
-  }, []);
+  }, [post.newcomment]);
 
   // useEffect(()=>{
   //   const postsFromLocalStorage = localStorage.getItem("posts");

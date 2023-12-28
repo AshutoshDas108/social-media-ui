@@ -1,6 +1,6 @@
-import { Avatar, Card, CardActions, CardContent, CardHeader, CardMedia, IconButton, Typography } from '@mui/material'
+import { Avatar, Card, CardActions, CardContent, CardHeader, CardMedia, Divider, IconButton, Typography } from '@mui/material'
 import { red } from '@mui/material/colors'
-import React from 'react'
+import React, { useState } from 'react'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -8,9 +8,31 @@ import ShareIcon from '@mui/icons-material/Share';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
+import { useDispatch, useSelector } from 'react-redux';
+import { createCommentAction } from '../../redux/Post/post.action';
 
 
 const PostCard = ({item}) => {
+
+  const dispatch = useDispatch();
+
+  const {post} = useSelector(store => store)
+
+  const [showComments, setShowComments] = useState(false);
+
+  const handleShowComments =()=>{
+    setShowComments(!showComments);
+  }
+
+  const handleCreateComment =(content)=>{
+    const reqData ={
+      postId: item.id,
+      commentData:{
+        content
+      }
+    }
+    dispatch(createCommentAction(reqData));
+  }
 
   return (
     <Card className=''>
@@ -59,7 +81,7 @@ const PostCard = ({item}) => {
 
             </IconButton>
 
-            <IconButton>
+            <IconButton onClick={handleShowComments}>
 
                {<ChatBubbleIcon/>}
 
@@ -76,6 +98,37 @@ const PostCard = ({item}) => {
             </div>
 
       </CardActions>
+      {showComments && <section>
+
+        <div className='flex items-center space-x-5 mx-3 my-5'>
+
+          <Avatar sx={{}}/>
+
+          <input onKeyPress={(e)=>{
+            if(e.key === 'Enter'){
+              handleCreateComment(e.target.value);
+              console.log('Enter pressed', e.target.value);
+            }
+          }}
+          className='w-full outline-none bg-transparent 
+          border border-[#3b4054] rounded-full px-5 py-2' 
+          placeholder='write your comment...' type="text" />
+
+        </div>
+        <Divider/>
+        <div className='mx-3 space-y-2 my-5 text-xs '>
+
+        {item.comments?.map((comment)=> <div className='flex items-center  space-x-5'>
+            <Avatar sx={{height:"2rem", width:"2rem", fontSize:"0.8rem"}}>
+             {comment.user.firstName[0]}
+            </Avatar>
+            <p>{comment.content}</p>
+            </div> )
+             }       
+          </div>
+
+        
+      </section>}
     </Card>
   )
 }
