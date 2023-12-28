@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 
 const UserChatCard = ({chat}) => {
     const {auth} = useSelector(store => store);
+    //No object can be rendered directly in the component
+    const lastMessage = chat.messages[chat.messages.length-1];
   return (
     <Card>
     <CardHeader
@@ -29,7 +31,7 @@ const UserChatCard = ({chat}) => {
       title={auth.user.id === chat.users[0].id? 
       chat.users[1].firstName + " " + chat.users[1].lastName: 
       chat.users[0].firstName +" "+ chat.users[0].lastName}
-      subheader={chat.messages[chat.messages.length-1]}
+      subheader={lastMessage ? lastMessage.content: "No messages yet"}
     ></CardHeader>
     </Card>
   );

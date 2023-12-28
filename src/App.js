@@ -10,6 +10,8 @@ import { useEffect } from 'react';
 // import Register from './pages/Authentication/Register';
 // import Login from './pages/Authentication/Login';
 import Message from './pages/Message/Message';
+import { ThemeProvider } from '@mui/material';
+import { darkTheme } from './Theme/DarkTheme';
 
 
 
@@ -24,6 +26,11 @@ function App() {
   [dispatch, jwt])
 
   return (
+
+    // <ThemeProvider theme={darkTheme}>
+
+    
+
     <div className=''>
       <Routes>
       <Route path='/*' element={auth.user?<HomePage/>:<Authentication />}/>
@@ -31,10 +38,12 @@ function App() {
         {/* <Route path='/authentication' element={<Authentication/>}/> */}
         {/* <Route path='/register' element={<Register/>}/>
         <Route path='/login' element={<Login/>}/> */}
-        {/* <Route path='/*' element={<Authentication/>} /> */}
+        <Route path='/*' element={<Authentication/>} />
      </Routes>
+     </div>
       
-    </div>
+    
+    // {/* </ThemeProvider> */}
   );
 }
 

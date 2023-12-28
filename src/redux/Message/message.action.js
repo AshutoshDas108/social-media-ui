@@ -11,11 +11,11 @@ import {
   GET_ALL_CHATS_SUCCESS,
 } from "./message.actionType";
 
-export const createMessageAction = (messageData) => async (dispatch) => {
+export const createMessageAction = (message) => async (dispatch) => {
   dispatch({ type: CREATE_MESSAGE_REQUEST });
 
   try {
-    const { data } = await api.post(`api/messages/chat`, messageData);
+    const { data } = await api.post(`api/messages/chat/${message.chatId}`, message);
 
     console.log("created message", data);
 
