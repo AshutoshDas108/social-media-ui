@@ -12,6 +12,9 @@ import { Formik, useFormik } from "formik";
 import React, { useState } from "react";
 import ImageIcon from "@mui/icons-material/Image";
 import VideoCallIcon from "@mui/icons-material/VideoCall";
+import { uploadToCloudniry } from "../../Utils/uploadToCloudniry";
+import { useDispatch } from "react-redux";
+import { createPostAction } from "../../redux/Post/post.action";
 
 const style = {
   position: "absolute",
@@ -27,35 +30,41 @@ const style = {
 };
 
 const CreatePostModel = ({ handleClose, open }) => {
-  
-
   const [selectedImage, setSelectedImage] = useState();
 
   const [selectedVideos, setSelectedVideos] = useState();
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSelectImage = () => {
-    setSelectedImage("");
+  const dispatch = useDispatch()
+
+  const handleSelectImage = async (event) => {
+    setIsLoading(true);
+    const imageUrl = await uploadToCloudniry(event.target.files[0], "image");
+    setSelectedImage(imageUrl);
+    setIsLoading(false);
+    formik.setFieldValue("image", imageUrl);
   };
 
-  const handleSelectVideo = () => {
-    setSelectedVideos("");
+  const handleSelectVideo = async (event) => {
+    setIsLoading(true);
+    const videoUrl = await uploadToCloudniry(event.target.files[0], "video");
+    setSelectedVideos(videoUrl);
+    setIsLoading(false);
+    formik.setFieldValue("video", videoUrl);
   };
-
 
   const formik = useFormik({
-    initialValues:{
-        caption:"",
-        image:"",
-        video:""
+    initialValues: {
+      caption: "",
+      image: "",
+      video: "",
     },
-    onSubmit:(values)=>{
-        console.log("values", values);
-    }
+    onSubmit: (values) => {
+      console.log("values", values);
+      dispatch(createPostAction(values));
+    },
   });
-
-
 
   return (
     <div>
@@ -75,7 +84,8 @@ const CreatePostModel = ({ handleClose, open }) => {
                   <p className="text-sm">@ashutosh_das</p>
                 </div>
               </div>
-              <textarea className="outline-none w-full mt-5 p-2 bg-transparent
+              <textarea
+                className="outline-none w-full mt-5 p-2 bg-transparent
                  border border-[#3b4054] rounded-sm"
                 placeholder="write caption ..."
                 name="caption"
@@ -96,7 +106,7 @@ const CreatePostModel = ({ handleClose, open }) => {
                   />
 
                   <label htmlFor="image-input">
-                    <IconButton color="primary">
+                    <IconButton color="primary" component="span">
                       <ImageIcon />
                     </IconButton>
                   </label>
@@ -125,6 +135,12 @@ const CreatePostModel = ({ handleClose, open }) => {
                 {selectedImage && (
                   <div>
                     <img src={selectedImage} alt="" className="h-[10rem]" />
+                  </div>
+                )}
+
+                {selectedVideos && (
+                  <div>
+                    <img src={selectedVideos} alt="" className="h-[10rem]" />
                   </div>
                 )}
 
