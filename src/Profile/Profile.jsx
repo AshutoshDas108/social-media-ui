@@ -101,7 +101,7 @@ const Profile = () => {
           <div className="flex justify-center">
             {value === "posts" ? (
               <Card className="space-y-2 my-10 w-[80%]">
-                {post.posts.map((item) => {
+                {post.posts.slice(0).reverse().map((item) => {
                   return (
                     <span className="border border-slate-100 rounded-md">
                       <PostCard item={item} />

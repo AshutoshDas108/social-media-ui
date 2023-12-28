@@ -115,7 +115,7 @@ console.log("post store", post)
         {console.log(post.posts.length)}
         {/* {console.log(post.post.length)} */}
 
-        {post.posts.map((item)=><PostCard item={item}/>)}
+        {post.posts.slice(0).reverse().map((item)=><PostCard item={item}/>)}
 
 
         {/* {isLoading ? (
