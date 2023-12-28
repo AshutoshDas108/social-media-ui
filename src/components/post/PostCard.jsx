@@ -9,14 +9,16 @@ import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import { useDispatch, useSelector } from 'react-redux';
-import { createCommentAction } from '../../redux/Post/post.action';
+import { createCommentAction, likePostAction } from '../../redux/Post/post.action';
+import { likedByReqUser } from '../../Utils/isLikedByReqUser';
 
 
 const PostCard = ({item}) => {
 
   const dispatch = useDispatch();
 
-  const {post} = useSelector(store => store)
+  //post not used impoetrd by mistake while trying to figure out logic 
+  const {post, auth} = useSelector(store => store)
 
   const [showComments, setShowComments] = useState(false);
 
@@ -32,6 +34,11 @@ const PostCard = ({item}) => {
       }
     }
     dispatch(createCommentAction(reqData));
+  }
+
+  
+  const handleLikePost = ()=>{
+    dispatch(likePostAction(item.id));
   }
 
   return (
@@ -69,9 +76,9 @@ const PostCard = ({item}) => {
       <CardActions className='flex justify-between' disableSpacing>
 
         <div>
-            <IconButton>
+            <IconButton onClick={handleLikePost}>
 
-               {true?<FavoriteIcon/>:<FavoriteBorderIcon/>}
+                {likedByReqUser(item, auth.user.id) ?<FavoriteIcon/>:<FavoriteBorderIcon/>}
 
             </IconButton>
 

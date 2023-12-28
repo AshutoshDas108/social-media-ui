@@ -2,13 +2,14 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Authentication from './pages/Authentication/Authentication';
-import Message from './pages/Message/message';
 import HomePage from './pages/HomePage/HomePage';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { getProfileAction } from './redux/Auth/auth.action';
 import { useEffect } from 'react';
 // import Register from './pages/Authentication/Register';
 // import Login from './pages/Authentication/Login';
+import Message from './pages/Message/Message';
 
 
 
@@ -26,7 +27,7 @@ function App() {
     <div className=''>
       <Routes>
       <Route path='/*' element={auth.user?<HomePage/>:<Authentication />}/>
-        <Route path='/messages' element={<Message/>}/>
+      <Route path='/messages' element={<Message/>}/>
         {/* <Route path='/authentication' element={<Authentication/>}/> */}
         {/* <Route path='/register' element={<Register/>}/>
         <Route path='/login' element={<Login/>}/> */}

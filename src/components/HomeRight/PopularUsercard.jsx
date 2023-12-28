@@ -14,8 +14,8 @@ const PopularUsercard = () => {
             </Avatar>
           }
           action={<Button size="small">Follow</Button>}
-          title="Sudeepta Sagarika"
-          subheader="@Sudeepta_123"
+          title="Virat Kohli"
+          subheader="@virat_18"
         />
       </Card>
     </div>
