@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
 
+
   const {auth} = useSelector(store=>store)
 
   const navigate = useNavigate();
@@ -31,6 +32,10 @@ const Sidebar = () => {
         setIsLoggedin(false);
         navigate('/login');
     };
+
+    const profile = ()=>{
+      navigate(`/profile/${auth?.user?.id}`);
+    }
 
     useEffect(() => {
       const loggedInUser = localStorage.getItem("user");
@@ -118,9 +123,9 @@ const Sidebar = () => {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
+        <MenuItem onClick={profile}>My Profile</MenuItem>
         <MenuItem onClick={logout}>Logout</MenuItem>
+        <MenuItem onClick={handleClose}>Delete Account</MenuItem>
       </Menu>
 
         </div>

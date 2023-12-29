@@ -1,6 +1,6 @@
 import { Button, TextField } from "@mui/material";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
 import { loginUserAction } from "../../redux/Auth/auth.action";
@@ -15,7 +15,11 @@ const validationSchema = {
 };
 
 const Login = () => {
-  const [formValue, setFormValue] = useState();
+   const [formValue, setFormValue] = useState("");
+
+   useEffect(() => {
+    setFormValue("")
+   },[formValue])
 
   //using this dispatch we will call our login action
   const dispatch = useDispatch();
@@ -26,11 +30,18 @@ const Login = () => {
     console.log("Submit", values);
     //call login action when somebody clicks on handleSubmit
     dispatch(loginUserAction({data:values}));
+    navigate('/');
   };
 
-  const handleNavigate = ()=>{
-    navigate('/');
-  }
+
+   /*
+   Button of type submit should 
+   not contain any onClick={} 
+   */
+
+  // const handleNavigate = ()=>{
+  //   navigate('/');
+  // }
 
 
   return (
@@ -75,7 +86,7 @@ const Login = () => {
           </div>
           </div>
           <Button sx={{padding: ".8rem 0rem"}} fullWidth type="submit" 
-          variant="contained" color="primary" onClick={handleNavigate}>
+          variant="contained" color="primary" >
             LOGIN
           </Button>
         </Form>

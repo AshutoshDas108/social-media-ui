@@ -8,7 +8,7 @@ import {
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import * as Yup from "yup";
+//import * as Yup from "yup";
 import { registerUserAction } from "../../redux/Auth/auth.action";
 import { useNavigate } from "react-router-dom";
 
@@ -19,12 +19,12 @@ const initialValues = {
   password: "",
   gender: "",
 };
-const validationSchema = {
-  email: Yup.string().email("Invalid Email").required("Email is required"),
-  password: Yup.string()
-    .min(6, "password must be at least 6 characters")
-    .required("Password is required"),
-};
+// const validationSchema = {
+//   email: Yup.string().email("Invalid Email").required("Email is required"),
+//   password: Yup.string()
+//     .min(6, "password must be at least 6 characters")
+//     .required("Password is required"),
+// };
 
 const Register = () => {
   const [gender, setGender] = useState("");
@@ -36,13 +36,17 @@ const Register = () => {
   const handleSubmit = (values) => {
     values.gender= gender;
     console.log("Submit", values);
-
     dispatch(registerUserAction({data:values}))
+    navigate('/login');
   };
 
   const handleChange = (event) => {
     setGender(event.target.value);
   };
+
+  // const handleNavigate =()=>{
+  //   navigate('/')
+  // }
 
   return (
     <>
@@ -142,6 +146,7 @@ const Register = () => {
             type="submit"
             variant="contained"
             color="primary"
+            //onClick={}
           >
             REGISTER
           </Button>
@@ -149,7 +154,7 @@ const Register = () => {
       </Formik>
       <div className="flex gap-2 items-center justify-center pt-5">
         <p>Already have an account ?</p>
-        <Button onClick={()=>navigate("/")}>LOGIN</Button>
+        <Button onClick={()=>navigate("/login")}>LOGIN</Button>
       </div>
     </>
     

@@ -35,8 +35,8 @@ function App() {
       <Routes>
         {/* /* logic --> auth?.user?<HomePage/>:<Authentication /> */}
       {/* <Route path='/*' element={auth?.user?<HomePage/>:<Authentication />}/> */}
-      <Route path='/*' element={auth?.user ? <HomePage key={auth?.user} /> : <Authentication key={auth?.user} />} />
-
+      <Route path='/*' element={auth?.user?.jwt ? <HomePage key={auth?.user} /> : <Authentication key={auth?.user} />} />
+      <Route path='/' element={<HomePage/>}/>
       <Route path='/messages' element={<Message/>}/>
       <Route path='/login' element={<Authentication/>} />
         {/* <Route path='/authentication' element={<Authentication/>}/> */}
