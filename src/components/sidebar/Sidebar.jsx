@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { navigationMenu } from './sideBarNavigation'
 import { Avatar, Button, Card, Divider, Menu, MenuItem } from '@mui/material'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
+//import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+//import { useHistory } from 'react-router-dom';
 
 const Sidebar = () => {
 
@@ -21,6 +22,32 @@ const Sidebar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const [isLoggedIn, setIsLoggedin] = useState(true);
+
+   const logout = () => {
+        // localStorage.removeItem('jwt');
+        localStorage.clear();
+        setIsLoggedin(false);
+        navigate('/login');
+    };
+
+    useEffect(() => {
+      const loggedInUser = localStorage.getItem("user");
+      if (loggedInUser) {
+        setIsLoggedin(true)
+        //navigate('/') --> done when click on LOGIN button in login.jsx
+      }
+    }, [isLoggedIn]);
+
+    // useEffect(() => {
+    //   if (!localStorage.getItem("jwt")) {
+    //    navigate('/');
+    //   }
+    //  }, [localStorage.length]);
+
+    
+     
 
   const handleNavigate = (item) => {
      if(item.title === 'Profile') 
@@ -93,7 +120,7 @@ const Sidebar = () => {
       >
         <MenuItem onClick={handleClose}>Profile</MenuItem>
         <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={logout}>Logout</MenuItem>
       </Menu>
 
         </div>

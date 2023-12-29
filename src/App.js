@@ -33,8 +33,12 @@ function App() {
 
     <div className=''>
       <Routes>
-      <Route path='/*' element={auth.user?<HomePage/>:<Authentication />}/>
+        {/* /* logic --> auth?.user?<HomePage/>:<Authentication /> */}
+      {/* <Route path='/*' element={auth?.user?<HomePage/>:<Authentication />}/> */}
+      <Route path='/*' element={auth?.user ? <HomePage key={auth?.user} /> : <Authentication key={auth?.user} />} />
+
       <Route path='/messages' element={<Message/>}/>
+      <Route path='/login' element={<Authentication/>} />
         {/* <Route path='/authentication' element={<Authentication/>}/> */}
         {/* <Route path='/register' element={<Register/>}/>
         <Route path='/login' element={<Login/>}/> */}

@@ -1,5 +1,5 @@
 import { Avatar, Box, Button, Card, Tab, Tabs } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import PostCard from "../components/post/PostCard";
 import UserReelsCard from "../components/Reels/UserReelsCard";
@@ -31,6 +31,13 @@ const Profile = () => {
     setValue(newValue);
   };
 
+  // const [user, setUser] = useState({});
+  // useEffect(() => {
+  //   if (auth?.user) {
+  //     setUser(prevUser => ({...prevUser, ...auth.user}));
+  //   }
+  //  }, [auth?.user]);
+   
   
 
   return (

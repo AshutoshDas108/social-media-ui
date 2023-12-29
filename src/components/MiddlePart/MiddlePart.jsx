@@ -40,6 +40,10 @@ console.log("post store", post)
 
   //const [isLoading, setIsLoading] = useState(true);
 
+  // useEffect(() => {
+  //   dispatch(getAllPostAction());
+  // }, []);
+
   useEffect(() => {
     dispatch(getAllPostAction());
   }, [post.newcomment]);

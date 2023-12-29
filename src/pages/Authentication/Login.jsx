@@ -28,6 +28,9 @@ const Login = () => {
     dispatch(loginUserAction({data:values}));
   };
 
+  const handleNavigate = ()=>{
+    navigate('/');
+  }
 
 
   return (
@@ -71,7 +74,10 @@ const Login = () => {
             />
           </div>
           </div>
-          <Button sx={{padding: ".8rem 0rem"}} fullWidth type="submit" variant="contained" color="primary">LOGIN</Button>
+          <Button sx={{padding: ".8rem 0rem"}} fullWidth type="submit" 
+          variant="contained" color="primary" onClick={handleNavigate}>
+            LOGIN
+          </Button>
         </Form>
       </Formik>
       <div className="flex gap-2 items-center justify-center pt-5">

@@ -115,10 +115,10 @@ const Message = () => {
         <Grid item xs={9} className="h-full">
           {currentChat ? (
             <div className="">
-              <div className="flex  justify-between items-center border-l p-5">
+              <div className="flex  justify-between items-center border-l p-5 sticky top-0 bg-white ">
                 <div className="flex items-center space-x-3 ">
                   <Avatar src="" />
-                  <p className="text-xl font-semibold">
+                  <p className="text-2xl font-bold">
                     {auth.user.id === currentChat.users[0].id
                       ? currentChat.users[1].firstName +
                         " " +
@@ -130,11 +130,11 @@ const Message = () => {
                 </div>
 
                 <div className="flex space-x-3">
-                  <IconButton>
+                  <IconButton >
                     <AddIcCallIcon />
                   </IconButton>
-
-                  <IconButton>
+                  {/* icon button style --> sx={{color:"#fff", background:"#191c29"}} */}
+                  <IconButton >
                     <VideoCallIcon />
                   </IconButton>
                 </div>
@@ -143,7 +143,7 @@ const Message = () => {
               {/* hideScrollbar will be implemented by us 
                  not a tailwind css class */}
 
-              <div className="hideScrollbar overflow-y-scroll h-[82vh] px-2 space-y-5 py-5">
+              <div className="hideScrollbar overflow-y-scroll h-[82vh] px-2 space-y-5 py-20">
                 {messages?.map((item, index) => (
                   <div ref={index === messages.length - 1 ? lastMessageRef : null}>
                   <ChatMessage key={index} item={item} />
