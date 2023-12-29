@@ -38,7 +38,7 @@ const PostCard = ({item}) => {
 
   
   const handleLikePost = ()=>{
-    dispatch(likePostAction(item.id));
+    dispatch(likePostAction(item?.id));
   }
 
   return (
@@ -47,7 +47,7 @@ const PostCard = ({item}) => {
 <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
+            {item?.user?.firstName[0]}
           </Avatar>
         }
         action={
