@@ -119,7 +119,7 @@ const Profile = () => {
                 })}
               </Card>
             ) : value === "reels" ? (
-              <div className="flex justify-center flex-wrap gap-4 space-y-3">
+              <div className="flex justify-center flex-wrap gap-4 space-y-3 w-[80%]">
                 {reels.map((item) => (
                   <UserReelsCard />
                 ))}

@@ -12,6 +12,7 @@ import { useEffect } from 'react';
 import Message from './pages/Message/Message';
 import { ThemeProvider } from '@mui/material';
 import { darkTheme } from './Theme/DarkTheme';
+import Profile from './Profile/Profile';
 
 
 
@@ -35,14 +36,15 @@ function App() {
       <Routes>
         {/* /* logic --> auth?.user?<HomePage/>:<Authentication /> */}
       {/* <Route path='/*' element={auth?.user?<HomePage/>:<Authentication />}/> */}
-      <Route path='/*' element={auth?.user?.jwt ? <HomePage key={auth?.user} /> : <Authentication key={auth?.user} />} />
-      <Route path='/' element={<HomePage/>}/>
+      <Route path='/*' element={auth?.user ? <HomePage key={auth?.user} /> : <Authentication key={auth?.user} />} />
+      {/* <Route path='/' element={<HomePage/>}/> */}
       <Route path='/messages' element={<Message/>}/>
-      <Route path='/login' element={<Authentication/>} />
+      {/* <Route path='/login' element={<Authentication/>} /> */}
         {/* <Route path='/authentication' element={<Authentication/>}/> */}
         {/* <Route path='/register' element={<Register/>}/>
         <Route path='/login' element={<Login/>}/> */}
-        <Route path='/*' element={<Authentication/>} />
+        {/* <Route path='/*' element={<Authentication/>} /> */}
+        {/* <Route path='/profile/*' element={<Profile/>}/> */}
      </Routes>
      </div>
       
